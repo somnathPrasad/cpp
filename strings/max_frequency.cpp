@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <string>
-#include <algorithm>
+#include <algorithm> //for sort() function
 
 using namespace std;
 
