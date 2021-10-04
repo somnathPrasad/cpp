@@ -1,3 +1,4 @@
+// WAP to find if a number is a prime number or not.
 #include <iostream>
 #include <cmath>
 
