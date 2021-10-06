@@ -1,3 +1,6 @@
+// WAP to find if a number is armstrong or not.
+// Armstrong number is a number that is equal to the sum of cubes of its digits.
+// Example: 153 = (1)^3 * (5)^3 * (3)^3
 #include <iostream>
 #include <math.h>
 
