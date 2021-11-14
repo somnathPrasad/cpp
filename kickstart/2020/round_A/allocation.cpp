@@ -53,8 +53,7 @@ int main()
         for (int i = 0; i < no_of_houses; i++)
         {cin>>house_prices[i];}
 
-        int _n = sizeof(house_prices)/sizeof(house_prices[0]);
-        sort(house_prices,house_prices+_n);
+        sort(house_prices,house_prices+no_of_houses);
 
         int bought_houses=0;
         for (int i = 0; i < no_of_houses; i++)
