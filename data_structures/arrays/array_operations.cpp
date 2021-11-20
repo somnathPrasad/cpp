@@ -9,7 +9,7 @@ int main()
     {
         int command;
         cout << endl;
-        cout << "Choose \n1: to exit \n2: print()\n3: pushBack()\n4: isEmpty()\n5: putAt()\n6: indexOf()\n7: contains()" << endl;
+        cout << "Choose \n1: to exit \n2: print()\n3: pushBack()\n4: isEmpty()\n5: insert()\n6: indexOf()\n7: contains()\n8: prepend()\n9: pop()\n10: deleteAt()\n11: remove()\n12: find()\n13: length\n14: at()" << endl;
         cin >> command;
 
         if(command == 1){
@@ -36,7 +36,7 @@ int main()
             int index;
             cout<<"Index: ";
             cin>>index;
-            arr.putAt(value,index);
+            arr.insert(value,index);
         }
         else if(command == 6){
             int value;
@@ -49,6 +49,42 @@ int main()
             cout<<"Value: ";
             cin>>value;
             cout<<arr.contains(value);
+        }
+        else if(command == 8){
+            int value;
+            cout<<"Value: ";
+            cin>>value;
+            arr.prepend(value);
+        }
+        else if(command == 9){
+            cout<<arr.pop();
+        }
+        else if(command == 10){
+            int index;
+            cout<<"Index: ";
+            cin>>index;
+            arr.deleteAt(index);
+        }
+        else if(command == 11){
+            int value;
+            cout<<"Value: ";
+            cin>>value;
+            arr.remove(value);
+        }
+        else if(command == 12){
+            int value;
+            cout<<"Value: ";
+            cin>>value;
+            cout<<arr.find(value);
+        }
+        else if(command == 13){
+            cout<<arr.length;
+        }
+        else if(command == 14){
+            int index;
+            cout<<"Index: ";
+            cin>>index;
+            cout<<arr.at(index);
         }
         else
         {

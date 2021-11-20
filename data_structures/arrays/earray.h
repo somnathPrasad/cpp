@@ -1,23 +1,44 @@
 #include <iostream>
+#include <exception>
 using namespace std;
+
+
+
+class Exception : public std::exception
+{
+    std::string _msg;
+public:
+    Exception(const std::string& msg) : _msg(msg){}
+
+    virtual const char* what() const noexcept override
+    {
+        return _msg.c_str();
+    }
+};
 
 class EArray
 {
 public:
     EArray();
+    ~EArray();
     int *arr = new int[size];
     int length;
-    int indexOf(int n);
-    int at(int n);
+    int indexOf(int item);
+    int at(int index);
     void print();
     void pushBack(int n);
-    string isEmpty();
-    void putAt(int value,int index);
+    int isEmpty();
+    void insert(int value,int index);
     bool contains(int n);
+    void prepend(int n);
+    int pop();
+    void deleteAt(int index);
+    void remove(int item);
+    int find(int item);
 
 private:
     int size;
-    void increaseArraySizeTo(int n);
+    void resize(int n);
 };
 
 EArray::EArray()
@@ -25,6 +46,52 @@ EArray::EArray()
     length = 0;
     size = 5;
     arr[0] = 1;
+}
+EArray::~EArray()
+{
+    delete[] arr;
+}
+
+int EArray::find(int item){
+    for (int i = 0; i < length; i++)
+    {
+        if(arr[i]==item){
+            return i;
+        }
+    }
+    return -1;
+}
+
+void EArray::remove(int item){
+    for (int i = 0; i < length; i++)
+    {
+        if(arr[i]==item){
+            deleteAt(i);
+        }
+    }
+}
+
+void EArray::deleteAt(int index){
+    for (int i = index; i < length-1; i++)
+    {
+        arr[i]=arr[i+1];
+    }
+    arr[length-1]=0;
+    length--;
+}
+
+int EArray::pop(){
+    int pop_value = arr[length-1];
+    arr[length-1]=0;
+    length--;
+    if(length<size/4){
+        resize(size/2);
+    }
+    return pop_value;
+}
+
+void EArray::prepend(int n){
+    insert(n,0);
 }
 
 bool EArray::contains(int n){
@@ -37,25 +104,29 @@ bool EArray::contains(int n){
     return false;
 }
 
-string EArray::isEmpty(){
+int EArray::isEmpty(){
     if(length==0){
-        return "true";
+        return length;
     }else{
-        return "false";
+        return length;
     }
 }
 
-void EArray::putAt(int value,int index){
-    if(length<=size){
-        for (int i = length; i > index; i--)
-        {
-            arr[i]=arr[i-1];
-        }
-        arr[index]=value;
-        length++;
+void EArray::insert(int value,int index){
+    if(index>length-1){
+        throw Exception("Index out of range.");
     }else{
-        increaseArraySizeTo(size+1);
-        putAt(value,index);
+        if(length<size){
+            for (int i = length; i > index; i--)
+            {
+                arr[i]=arr[i-1];
+            }
+            arr[index]=value;
+            length++;
+        }else{
+            resize(size+1);
+            insert(value,index);
+        }
     }
 }
 
@@ -69,10 +140,10 @@ void EArray::print(){
     
 }
 
-void EArray::increaseArraySizeTo(int n)
+void EArray::resize(int n)
 {
     int *temparr = new int[n];
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < length; i++)
     {
         temparr[i] = arr[i];
     }
@@ -81,27 +152,31 @@ void EArray::increaseArraySizeTo(int n)
     arr = temparr;
 }
 
-int EArray::indexOf(int n)
+int EArray::indexOf(int item)
 {
     for (int i = 0; i < length; i++)
     {
-        if(arr[i]==n){
+        if(arr[i]==item){
             return i;
         }
     }
-    return -1;
+    throw Exception("Item not found");
 }
 
-int EArray::at(int n)
+int EArray::at(int index)
 {
-    return arr[n];
+    if(index<length){
+        return arr[index];
+    }else{
+        throw Exception("index out of range");
+    }
 }
 
 void EArray::pushBack(int n)
 {
     if (length == size)
     {
-        increaseArraySizeTo(size*2);
+        resize(size*2);
         pushBack(n);
     }
     else
