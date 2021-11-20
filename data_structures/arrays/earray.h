@@ -109,9 +109,9 @@ bool EArray::contains(int n){
 
 int EArray::isEmpty(){
     if(length==0){
-        return length;
+        return 1;
     }else{
-        return length;
+        return -1;
     }
 }
 
