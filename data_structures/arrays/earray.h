@@ -63,31 +63,34 @@ int EArray::find(int item){
 }
 
 void EArray::remove(int item){
-    for (int i = 0; i < length; i++)
-    {
-        if(arr[i]==item){
-            deleteAt(i);
-        }
-    }
+    deleteAt(indexOf(item));
 }
 
 void EArray::deleteAt(int index){
-    for (int i = index; i < length-1; i++)
-    {
-        arr[i]=arr[i+1];
+    if(index>length-1){
+        throw Exception("index out of range");
+    }else{
+        for (int i = index; i < length-1; i++)
+        {
+            arr[i]=arr[i+1];
+        }
+        arr[length-1]=0;
+        length--;
     }
-    arr[length-1]=0;
-    length--;
 }
 
 int EArray::pop(){
-    int pop_value = arr[length-1];
-    arr[length-1]=0;
-    length--;
-    if(length<size/4){
-        resize(size/2);
+    if(length==0){
+        throw Exception("array is empty");
+    }else{
+        int pop_value = arr[length-1];
+        arr[length-1]=0;
+        length--;
+        if(length<size/4){
+            resize(size/2);
+        }
+        return pop_value;
     }
-    return pop_value;
 }
 
 void EArray::prepend(int n){
