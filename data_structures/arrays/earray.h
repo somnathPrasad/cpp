@@ -22,6 +22,10 @@ public:
     EArray();
     ~EArray();
     int *arr = new int[size];
+    /**
+     * @brief number of item in the array.
+     * 
+     */
     int length;
     int indexOf(int item);
     int at(int index);
@@ -30,13 +34,17 @@ public:
     int isEmpty();
     void insert(int value,int index);
     bool contains(int n);
-    void prepend(int n);
+    void prepend(int item);
     int pop();
     void deleteAt(int index);
     void remove(int item);
     int find(int item);
 
 private:
+    /**
+     * @brief actual size of the array.
+     * 
+     */
     int size;
     void resize(int n);
 };
@@ -51,7 +59,12 @@ EArray::~EArray()
 {
     delete[] arr;
 }
-
+/**
+ * @brief Find if a item is present inside the array or not.
+ * 
+ * @param item 
+ * @return The index of the item if found else returns -1.
+ */
 int EArray::find(int item){
     for (int i = 0; i < length; i++)
     {
@@ -62,10 +75,19 @@ int EArray::find(int item){
     return -1;
 }
 
+/**
+ * @brief removes the first matching item.
+ * 
+ * @param item 
+ */
 void EArray::remove(int item){
     deleteAt(indexOf(item));
 }
-
+/**
+ * @brief Deletes the item present at the index
+ * 
+ * @param index index of the item
+ */
 void EArray::deleteAt(int index){
     if(index>length-1){
         throw Exception("index out of range");
@@ -78,7 +100,11 @@ void EArray::deleteAt(int index){
         length--;
     }
 }
-
+/**
+ * @brief remove item from the end of the array.
+ * 
+ * @return the item removed.
+ */
 int EArray::pop(){
     if(length==0){
         throw Exception("array is empty");
@@ -92,21 +118,35 @@ int EArray::pop(){
         return pop_value;
     }
 }
-
-void EArray::prepend(int n){
-    insert(n,0);
+/**
+ * @brief Append a new item at the 0th position in the array.
+ * 
+ * @param item item to append at 0th position.
+ */
+void EArray::prepend(int item){
+    insert(item,0);
 }
-
-bool EArray::contains(int n){
+/**
+ * @brief Check if the item is present in the array or not
+ * 
+ * @param item 
+ * @return true if item is present
+ * @return false if item is not present
+ */
+bool EArray::contains(int item){
     for (int i = 0; i < length; i++)
     {
-        if(arr[i]==n){
+        if(arr[i]==item){
             return true;
         }
     }
     return false;
 }
-
+/**
+ * @brief check if the array is empty.
+ * 
+ * @return 1 if the array is empty else -1.
+ */
 int EArray::isEmpty(){
     if(length==0){
         return 1;
@@ -114,7 +154,12 @@ int EArray::isEmpty(){
         return -1;
     }
 }
-
+/**
+ * @brief insert a new item at any index.
+ * 
+ * @param value item to be inserted.
+ * @param index index of item.
+ */
 void EArray::insert(int value,int index){
     if(index>length-1){
         throw Exception("Index out of range.");
@@ -132,7 +177,10 @@ void EArray::insert(int value,int index){
         }
     }
 }
-
+/**
+ * @brief print the whole array.
+ * 
+ */
 void EArray::print(){
     cout << "Array containes: [";
     for (int i = 0; i < length; i++)
@@ -142,7 +190,11 @@ void EArray::print(){
     cout << "]" << endl;
     
 }
-
+/**
+ * @brief resize the array.
+ * 
+ * @param n new size
+ */
 void EArray::resize(int n)
 {
     int *temparr = new int[n];
@@ -155,6 +207,13 @@ void EArray::resize(int n)
     arr = temparr;
 }
 
+
+    /**
+     * @brief Return the index of the given item if present in the array.
+     * 
+     * @param item item in the array.
+     * @return int index
+     */
 int EArray::indexOf(int item)
 {
     for (int i = 0; i < length; i++)
@@ -165,7 +224,12 @@ int EArray::indexOf(int item)
     }
     throw Exception("Item not found");
 }
-
+/**
+ * @brief Access items from the array.
+ * 
+ * @param index 
+ * @return integer at the index.
+ */
 int EArray::at(int index)
 {
     if(index<length){
@@ -174,7 +238,11 @@ int EArray::at(int index)
         throw Exception("index out of range");
     }
 }
-
+/**
+ * @brief add a new item in the end of the array.
+ * 
+ * @param n item to be inserted
+ */
 void EArray::pushBack(int n)
 {
     if (length == size)
