@@ -18,5 +18,10 @@
   * ### array.length : returns the length of the array.
   * ### array.at() : returns the item at the given index.
 
+# How to use this
+### 1. download [earray](https://github.com/somnathPrasad/cpp/blob/master/data_structures/arrays/earray.h "Click to go to earray.h") file.
+### 2. place it in the same folder in which you are working.
+### 3. use #include"earray.h" to include this file.
+
 ### i know the algorithms in this file is not up to the mark, but i am learning so wish me luck.
 
