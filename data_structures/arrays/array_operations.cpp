@@ -9,7 +9,7 @@ int main()
     {
         int command;
         cout << endl;
-        cout << "Choose \n1: to exit \n2: print()\n3: pushBack()\n4: isEmpty()\n5: insert()\n6: indexOf()\n7: contains()\n8: prepend()\n9: pop()\n10: deleteAt()\n11: remove()\n12: find()\n13: length\n14: at()" << endl;
+        cout << "Choose \n1: to exit \n2: print()\n3: pushBack()\n4: isEmpty()\n5: insert()\n6: indexOf()\n7: contains()\n8: prepend()\n9: pop()\n10: deleteAt()\n11: remove()\n12: find()\n13: length\n14: at()\n15: sort()" << endl;
         cin >> command;
 
         if(command == 1){
@@ -85,6 +85,9 @@ int main()
             cout<<"Index: ";
             cin>>index;
             cout<<arr.at(index);
+        }
+        else if(command == 15){
+            arr.sort();
         }
         else
         {
