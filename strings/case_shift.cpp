@@ -1,33 +1,37 @@
-// CHANGE A STRING TO UPPER OR LOWER CASE.
+// program to change case of a string in c++
 
 #include <iostream>
 #include <string>
-#include <cctype>
 
 using namespace std;
 
-int main()
-{
-    string s;
-    getline(cin, s);
-    // upper case
+
+string toUpperCase(string s){
     for (int i = 0; s[i] != '\0'; i++)
     {
-        if (s[i] >= 'a' && s[i] <= 'z')
-        {
+        if(s[i] >= 'a' && s[i] <= 'z'){
             s[i]-=32;
         }
     }
-    cout<<s<<endl;
-    
-// lower case
+    return s;
+}
+
+string toLowerCase(string s){
     for (int i = 0; s[i] != '\0'; i++)
     {
         if (s[i] >= 'A' && s[i] <= 'Z')
         {
             s[i]+=32;
         }
+        
     }
-    cout<<s<<endl;
+    return s;
+}
+
+int main(){
+    string s;
+    getline(cin,s);
+    cout<<"UPPER CASE: "<<toUpperCase(s)<<endl;
+    cout<<"LOWER CASE: "<<toLowerCase(s)<<endl;
     return 0;
 }
