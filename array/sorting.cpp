@@ -1,6 +1,8 @@
 #include <iostream>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 void display(int arr[],int n){
 for (int i = 0; i < n; i++)
@@ -62,9 +64,13 @@ int main(){
     {
         cin>>arr[i];
     }
-    selectionSort(arr,n);
-    bubbleSort(arr,n);
+    auto start = high_resolution_clock::now();
+    // selectionSort(arr,n);
+    // bubbleSort(arr,n);
     insertionSort(arr,n);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop-start);
+    cout<<"\n"<<duration.count()<<" milliseconds";
     
     return 0;
 }
