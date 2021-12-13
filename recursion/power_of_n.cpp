@@ -2,18 +2,18 @@
 
 using namespace std;
 
-int power(int n,int p){
-    if(p==0){
-        return 1;
+int power(int n,int pow){
+    if(pow==1){
+        return n;
     }
-    int prevPow = power(n,p-1);
-    return n*prevPow;
+    int rest = power(n,pow-1);
+    return n*rest;
 }
 
 int main()
 {
-    int n,p;
-    cin>>n>>p;
-    cout<<power(n,p);
+    int n,pow;
+    cin>>n>>pow;
+    cout<<power(n,pow);
     return 0;
 }

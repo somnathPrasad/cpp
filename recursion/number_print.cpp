@@ -2,24 +2,21 @@
 
 using namespace std;
 
-void printDec(int n)
+void decreasing(int n)
 {
-    if (n == 0)
-    {
-        return;
-    }
-    else
-    {
-        cout << n << " ";
-        printDec(n - 1);
-    }
-}
-
-void printInc(int n){
     if(n==0){
         return;
     }
-    printInc(n-1);
+    cout<<n<<" ";
+    decreasing(n-1);
+}
+
+void increasing(int n){
+    if(n==1){
+        cout<<1<<" ";
+        return;
+    }
+    increasing(n-1);
     cout<<n<<" ";
 }
 
@@ -27,10 +24,10 @@ int main()
 {
     int n;
     cin >> n;
-    cout<<"print in decreasing order using recurrsion: ";
-    printDec(n);
+    cout << "numbers in increasing order: ";
+    decreasing(n);
     cout<<endl;
-    cout<<"print in increasing order using recurrsion: ";
-    printInc(n);
+    cout<<"numbers in increasing order: ";
+    increasing(n);
     return 0;
 }
